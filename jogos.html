@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Retrô ✦ Sally Nuzzi</title>
+  <meta name="description" content="Salão de jogos retrô e clássicos por Sally Nuzzi.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="glow-orb glow-top-left" aria-hidden="true"></div>
+  <div class="glow-orb glow-bottom-right" aria-hidden="true"></div>
+
+  <!-- Audio Element -->
+  <audio id="ambientAudio" loop preload="none"></audio>
+
+  <!-- Header Global com Player Completo e Contador -->
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo-area">
+        <span class="pixel-star">✦</span>
+        <a href="index.html" class="site-title-link">
+          <span class="site-title">SALLY_NUZZI.exe</span>
+        </a>
+        <span class="status-badge" title="Status Online">● ONLINE</span>
+        <div class="header-counter-pill" title="Total de visitas registradas">
+          <span class="counter-label">VISITAS:</span>
+          <span class="counter-num" id="headerVisitCount">001337</span>
+        </div>
+      </div>
+
+      <!-- Player de Áudio Expandido -->
+      <div class="header-audio-player" id="headerPlayer">
+        <div class="track-marquee-wrapper" title="Música em reprodução">
+          <div class="track-marquee-text" id="trackMarqueeText">
+            <span>✦ Sintetizador Lofi Cósmico — Sally Nuzzi Sound ✦</span>
+          </div>
+        </div>
+
+        <div class="player-controls-row">
+          <button id="prevTrackBtn" class="audio-ctrl-btn" title="Música Anterior" aria-label="Música Anterior">⏮</button>
+          <button id="globalAudioBtn" class="audio-toggle-btn" aria-label="Tocar ou Pausar">
+            <span class="btn-icon">▶</span>
+          </button>
+          <button id="nextTrackBtn" class="audio-ctrl-btn" title="Próxima Música" aria-label="Próxima Música">⏭</button>
+
+          <div class="header-visualizer" id="headerVisualizer" aria-hidden="true">
+            <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
+          </div>
+
+          <div class="header-volume-wrap">
+            <button id="muteToggleBtn" class="mute-btn" title="Mutar / Desmutar (clique aqui)" aria-label="Mutar ou Desmutar Som">🔊</button>
+            <input type="range" id="globalVolumeSlider" min="0" max="100" value="40" aria-label="Volume">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">← Voltar para a Home</a>
+    </nav>
+  </header>
+
+  <main class="main-wrapper arcade-page">
+    <div class="window-card">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot maximize"></span>
+        </div>
+        <div class="window-title">game_selector.rom</div>
+      </div>
+      <div class="window-body">
+        <h1 class="section-title">🕹️ Salão de Jogos Retrô</h1>
+        <p class="arcade-intro">Escolha uma fita/cartucho abaixo para carregar o jogo no emulador:</p>
+
+        <!-- Menu de Cartuchos de Jogos -->
+        <div class="cartridge-grid">
+          <div class="cartridge active" id="cartridgeSnake" data-game="snake">
+            <span class="cart-icon">🐍</span>
+            <div class="cart-info">
+              <h3>Snake 99 (Neon)</h3>
+              <p>O clássico atemporal da cobrinha devoradora de pixels rosa neon.</p>
+            </div>
+            <span class="cart-badge">JOGÁVEL AGORA</span>
+          </div>
+
+          <div class="cartridge coming-soon" title="Em breve!">
+            <span class="cart-icon">🧱</span>
+            <div class="cart-info">
+              <h3>Brick Breaker Emo</h3>
+              <p>Destrua tijolos em cascata com rebote sonoro em 8-bits.</p>
+            </div>
+            <span class="cart-badge locked">EM BREVE</span>
+          </div>
+
+          <div class="cartridge coming-soon" title="Em breve!">
+            <span class="cart-icon">👾</span>
+            <div class="cart-info">
+              <h3>Space Invaders Dark</h3>
+              <p>Defenda a galáxia roxa dos invasores alienígenas espaciais.</p>
+            </div>
+            <span class="cart-badge locked">EM BREVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área de Jogo Carregado (Snake 99) -->
+    <div class="window-card arcade-screen-card" id="activeGameArea">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot maximize"></span>
+        </div>
+        <div class="window-title" id="activeGameTitle">running: snake_99.bin</div>
+      </div>
+      <div class="window-body text-center">
+        <div class="arcade-hud">
+          <span>SCORE: <b id="gameScore">0</b></span>
+          <span>RECORD: <b id="gameHighScore">0</b></span>
+        </div>
+        
+        <div class="canvas-wrapper">
+          <canvas id="arcadeCanvas" width="340" height="340" aria-label="Tela do Jogo"></canvas>
+        </div>
+
+        <div class="arcade-controls">
+          <button class="arcade-btn" id="startBtn">▶ INICIAR / REINICIAR</button>
+          <p class="control-hint">Use as setas do teclado ou as teclas W, A, S, D</p>
+          <div class="dpad-mobile" aria-label="Controles virtuais">
+            <button class="dpad-key" id="btnUp">▲</button>
+            <div class="dpad-mid">
+              <button class="dpad-key" id="btnLeft">◀</button>
+              <button class="dpad-key" id="btnRight">▶</button>
+            </div>
+            <button class="dpad-key" id="btnDown">▼</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria dos Pets ✦ Sally Nuzzi</title>
+  <meta name="description" content="Galeria de fotos e histórias dos companheiros de quatro patas de Sally Nuzzi.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="glow-orb glow-top-left" aria-hidden="true"></div>
+  <div class="glow-orb glow-bottom-right" aria-hidden="true"></div>
+
+  <!-- Audio Element -->
+  <audio id="ambientAudio" loop preload="none"></audio>
+
+  <!-- Header Global com Player Completo e Contador -->
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo-area">
+        <span class="pixel-star">✦</span>
+        <a href="index.html" class="site-title-link">
+          <span class="site-title">SALLY_NUZZI.exe</span>
+        </a>
+        <span class="status-badge" title="Status Online">● ONLINE</span>
+        <div class="header-counter-pill" title="Total de visitas registradas">
+          <span class="counter-label">VISITAS:</span>
+          <span class="counter-num" id="headerVisitCount">001337</span>
+        </div>
+      </div>
+
+      <!-- Player de Áudio Expandido -->
+      <div class="header-audio-player" id="headerPlayer">
+        <div class="track-marquee-wrapper" title="Música em reprodução">
+          <div class="track-marquee-text" id="trackMarqueeText">
+            <span>✦ Sintetizador Lofi Cósmico — Sally Nuzzi Sound ✦</span>
+          </div>
+        </div>
+
+        <div class="player-controls-row">
+          <button id="prevTrackBtn" class="audio-ctrl-btn" title="Música Anterior" aria-label="Música Anterior">⏮</button>
+          <button id="globalAudioBtn" class="audio-toggle-btn" aria-label="Tocar ou Pausar">
+            <span class="btn-icon">▶</span>
+          </button>
+          <button id="nextTrackBtn" class="audio-ctrl-btn" title="Próxima Música" aria-label="Próxima Música">⏭</button>
+
+          <div class="header-visualizer" id="headerVisualizer" aria-hidden="true">
+            <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
+          </div>
+
+          <div class="header-volume-wrap">
+            <button id="muteToggleBtn" class="mute-btn" title="Mutar / Desmutar (clique aqui)" aria-label="Mutar ou Desmutar Som">🔊</button>
+            <input type="range" id="globalVolumeSlider" min="0" max="100" value="40" aria-label="Volume">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">← Voltar para a Home</a>
+      <a href="jogos.html" class="nav-item">/arcade-jogos</a>
+    </nav>
+  </header>
+
+  <main class="main-wrapper pets-page">
+    <div class="window-card">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot maximize"></span>
+        </div>
+        <div class="window-title">pet_archive_selector.sys</div>
+      </div>
+      <div class="window-body">
+        <div class="pet-tab-nav" role="tablist">
+          <button class="pet-tab-btn active" data-pet="floki" id="tab-floki">🐾 FLOKI</button>
+          <button class="pet-tab-btn" data-pet="tom" id="tab-tom">🐱 TOM</button>
+          <button class="pet-tab-btn" data-pet="cabide" id="tab-cabide">🖤 CABIDE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Informações e Galeria do Pet Ativo -->
+    <section class="window-card" id="petDetailCard">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot maximize"></span>
+        </div>
+        <div class="window-title" id="petWindowTitle">gallery: floki.dat</div>
+      </div>
+      <div class="window-body">
+        
+        <div class="pet-header-profile">
+          <div class="pet-main-avatar">
+            <img src="assets/images/floki.png" alt="Foto principal do pet" id="petMainPhoto">
+          </div>
+          <div class="pet-meta-info">
+            <h1 class="pet-title-name" id="petName">Floki 🐾</h1>
+            <p class="pet-subtitle" id="petTitle">Guardião das Madrugadas e Caçador de Carinho</p>
+            <p class="pet-bio-text" id="petBio">
+              Floki é a energia protetora da casa. Sempre perto do teclado, pronto para checar se as linhas
+              de código estão sendo aprovadas com o carinho adequado.
+            </p>
+            <div class="folder-instruction-box">
+              <span class="folder-icon">📁</span>
+              <span>Para adicionar mais fotos do(a) <b id="petFolderTarget">Floki</b>, basta colar suas imagens em: 
+                <code>assets/images/pets/<span id="folderNameSpan">floki</span>/</code>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title gallery-heading">Álbum de Memórias & Polaroids</h2>
+        
+        <div class="photo-album-grid" id="photoAlbum">
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

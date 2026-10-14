@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sally Nuzzi ✦ Web Haven</title>
+  <meta name="description" content="Portfólio pessoal, blog de memórias, jogos clássicos e bugigangas legais por Sally Nuzzi.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="glow-orb glow-top-left" aria-hidden="true"></div>
+  <div class="glow-orb glow-bottom-right" aria-hidden="true"></div>
+
+  <!-- Audio Element -->
+  <audio id="ambientAudio" loop preload="none"></audio>
+
+  <!-- Header Global com Player Completo e Contador de Visitantes -->
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo-area">
+        <span class="pixel-star">✦</span>
+        <a href="index.html" class="site-title-link">
+          <span class="site-title">SALLY_NUZZI.exe</span>
+        </a>
+        <span class="status-badge" title="Status Online">● ONLINE</span>
+        <!-- Contador de Visitantes no Cabeçalho -->
+        <div class="header-counter-pill" title="Total de visitas registradas">
+          <span class="counter-label">VISITAS:</span>
+          <span class="counter-num" id="headerVisitCount">001337</span>
+        </div>
+      </div>
+
+      <!-- Player de Áudio Expandido (Prev, Play, Next, Marquee Track Name, Mute/Unmute) -->
+      <div class="header-audio-player" id="headerPlayer">
+        <!-- Letreiro da Música em Ciclo Contínuo -->
+        <div class="track-marquee-wrapper" title="Música em reprodução">
+          <div class="track-marquee-text" id="trackMarqueeText">
+            <span>✦ Sintetizador Lofi Cósmico — Sally Nuzzi Sound ✦</span>
+          </div>
+        </div>
+
+        <div class="player-controls-row">
+          <button id="prevTrackBtn" class="audio-ctrl-btn" title="Música Anterior" aria-label="Música Anterior">⏮</button>
+          <button id="globalAudioBtn" class="audio-toggle-btn" aria-label="Tocar ou Pausar">
+            <span class="btn-icon">▶</span>
+          </button>
+          <button id="nextTrackBtn" class="audio-ctrl-btn" title="Próxima Música" aria-label="Próxima Música">⏭</button>
+
+          <div class="header-visualizer" id="headerVisualizer" aria-hidden="true">
+            <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
+          </div>
+
+          <!-- Volume com Mute Toggle no Ícone -->
+          <div class="header-volume-wrap">
+            <button id="muteToggleBtn" class="mute-btn" title="Mutar / Desmutar (clique aqui)" aria-label="Mutar ou Desmutar Som">🔊</button>
+            <input type="range" id="globalVolumeSlider" min="0" max="100" value="40" aria-label="Volume">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="index.html#about" class="nav-item">/sobre</a>
+      <a href="index.html#blog" class="nav-item">/blog</a>
+      <a href="jogos.html" class="nav-item">/arcade-jogos</a>
+      <a href="index.html#media" class="nav-item">/tv</a>
+      <a href="index.html#pets" class="nav-item">/companheiros</a>
+    </nav>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-wrapper">
+    <!-- Hero Profile Section -->
+    <section id="about" class="window-card hero-section">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot maximize"></span>
+        </div>
+        <div class="window-title">profile_viewer.sys</div>
+      </div>
+      <div class="window-body hero-content">
+        <div class="avatar-container">
+          <div class="avatar-frame">
+            <img src="assets/images/Avatar.png" alt="Avatar ilustrado de Sally Nuzzi" class="avatar-img">
+          </div>
+          <div class="status-tag">Status: criando bugigangas virtuais</div>
+        </div>
+        <div class="hero-text">
+          <h1 class="glitch-text" data-text="Sally Nuzzi">Sally Nuzzi</h1>
+          <p class="tagline">✦ Bem-vindo(a) ao meu recanto pessoal da web ✦</p>
+          <p class="bio-paragraph">
+            Um espaço caótico-organizado criado para guardar tudo que amo: devaneios em forma de texto,
+            jogos clássicos, estética emo/dark, vídeos favoritos e companheiros de jornada.
+          </p>
+          <div class="badge-shelf">
+            <span class="tag-badge">🎮 Gamer</span>
+            <span class="tag-badge">🦇 Dark / Emo Aesthetic</span>
+            <span class="tag-badge">👾 Webcore</span>
+            <span class="tag-badge">☕ Coffee & Code</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layout Grid com 2 Colunas -->
+    <div class="content-grid">
+      <!-- Coluna Principal: Blog e TV -->
+      <div class="grid-primary">
+        
+        <!-- Seção Mini Blog: Vozes da Minha Cabeça -->
+        <section id="blog" class="window-card">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+            <div class="window-title">vozes_da_minha_cabeça.log</div>
+          </div>
+          <div class="window-body">
+            <h2 class="section-title">Últimas Transmissões</h2>
+            
+            <article class="post-card">
+              <div class="post-meta">
+                <span class="post-date">✦ 14 de Outubro, 2026</span>
+                <span class="post-mood">Mood: Ansiosa com código ⚡</span>
+              </div>
+              <h3 class="post-title">O renascimento do meu site pessoal</h3>
+              <p class="post-excerpt">
+                Sempre senti falta da internet dos anos 2000, onde cada página tinha a sua própria alma,
+                cursores brilhantes e botões esquisitos. Este site é o meu manifesto contra páginas sem vida.
+              </p>
+            </article>
+
+            <article class="post-card">
+              <div class="post-meta">
+                <span class="post-date">✦ Arquivo de Memória</span>
+                <span class="post-mood">Mood: Nostalgia Pura 📼</span>
+              </div>
+              <h3 class="post-title">Colecionando momentos e referências</h3>
+              <p class="post-excerpt">
+                Preto, roxo profundo e luzes neon. Aqui ficarão guardadas listas de coisas que me inspiram,
+                análises de jogos indie, playlists e devaneios de madrugada.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Seção de Vídeos / CRT Player -->
+        <section id="media" class="window-card">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+            <div class="window-title">sally_nuzzi.tv</div>
+          </div>
+          <div class="window-body">
+            <h2 class="section-title">Vídeo novo no canal, já viu?</h2>
+            <div class="crt-frame">
+              <div class="crt-scanlines"></div>
+              <iframe 
+                class="video-embed" 
+                src="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?si=lofi" 
+                title="Transmissão de Vídeo / Lofi Beats" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p class="media-caption">✦ Uma vibe sonora para acompanhar sua visita ✦</p>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Coluna Direita: Atalho de Jogos, Bichinhos & Bugigangas -->
+      <aside class="grid-secondary">
+        
+        <!-- Cartão Atalho para a Nova Sala de Jogos -->
+        <div class="window-card arcade-preview-card">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+            <div class="window-title">arcade_room.exe</div>
+          </div>
+          <div class="window-body text-center">
+            <div class="arcade-icon-art">🕹️ 👾 🎮</div>
+            <h3 class="arcade-card-title">Salão de Jogos Retrô</h3>
+            <p class="arcade-card-desc">Uma página inteira só de joguinhos clássicos (Snake 99 e mais por vir)!</p>
+            <a href="jogos.html" class="enter-arcade-link">▶ ENTRAR NO ARCADE</a>
+          </div>
+        </div>
+
+        <!-- Hall da Fama dos Bichinhos -->
+        <div id="pets" class="window-card">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+            <div class="window-title">pet_squad.exe</div>
+          </div>
+          <div class="window-body pets-grid">
+            <h2 class="section-title">Companheiros de Vida</h2>
+            <p class="pets-hint">✦ Clique em um companheiro para ver sua galeria!</p>
+            
+            <a href="pets.html?pet=floki" class="pet-item pet-link-card">
+              <div class="pet-img-wrap">
+                <img src="assets/images/floki.png" alt="Floki" class="pet-pic">
+              </div>
+              <div class="pet-desc">
+                <h4>Floki 🐾 <span class="arrow-indicator">➔</span></h4>
+                <p>Guardião das madrugadas, caçador de carinho e fiscal de códigos.</p>
+              </div>
+            </a>
+
+            <a href="pets.html?pet=tom" class="pet-item pet-link-card">
+              <div class="pet-img-wrap">
+                <img src="assets/images/tom.png" alt="Tom" class="pet-pic">
+              </div>
+              <div class="pet-desc">
+                <h4>Tom 🐱 <span class="arrow-indicator">➔</span></h4>
+                <p>Mestre do sono profundo, ronrom terapêutico e observador sereno.</p>
+              </div>
+            </a>
+
+            <a href="pets.html?pet=cabide" class="pet-item pet-link-card">
+              <div class="pet-img-wrap">
+                <img src="assets/images/cabide.png" alt="Cabide" class="pet-pic">
+              </div>
+              <div class="pet-desc">
+                <h4>Cabide 🖤 <span class="arrow-indicator">➔</span></h4>
+                <p>Presença icônica e misteriosa da identidade visual.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sticker Bomb Box Customizável -->
+        <div class="window-card widget-box">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+            <div class="window-title">stickers & badges.box</div>
+          </div>
+          <div class="window-body text-center">
+            <div class="sticker-shelf" id="stickerShelf">
+              <div class="pixel-badge badge-emo">🖤 EMO NOT DEAD</div>
+              <div class="pixel-badge badge-pixel">👾 8-BIT SOUL</div>
+              <div class="pixel-badge badge-purple">💜 PURPLE ONLY</div>
+              <div class="pixel-badge badge-music">🎸 RAWK ON</div>
+              <div class="pixel-badge badge-cat">🐱 CAT POWER</div>
+              <div class="pixel-badge badge-web">🌐 WEB INDEPENDENTE</div>
+            </div>
+            <p class="sticker-footer-note">✦ Coleção de adesivos virtuais ✦</p>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
+    <p class="sub-footer">Hospedado no GitHub Pages ✦ Compatível com qualquer tela</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
