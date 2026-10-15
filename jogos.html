@@ -92,31 +92,31 @@
               <h3>Snake 99 (Neon)</h3>
               <p>O clássico atemporal da cobrinha devoradora de pixels rosa neon.</p>
             </div>
-            <span class="cart-badge">JOGÁVEL AGORA</span>
+            <span class="cart-badge">CANVAS</span>
           </div>
 
-          <div class="cartridge coming-soon" title="Em breve!">
+          <div class="cartridge" id="cartridgePizza" data-game="flash" data-swf="assets/games/papas-pizzeria/papas-pizzeria.swf" data-title="Papa's Pizzeria">
+            <span class="cart-icon">🍕</span>
+            <div class="cart-info">
+              <h3>Papa's Pizzeria</h3>
+              <p>O clássico nostálgico dos jogos em Flash! Asse e monte as melhores pizzas.</p>
+            </div>
+            <span class="cart-badge flash">FLASH (RUFFLE)</span>
+          </div>
+
+          <div class="cartridge" id="cartridgeTetris" data-game="flash" data-swf="assets/games/tetris/tetris.swf" data-title="Tetris Classic">
             <span class="cart-icon">🧱</span>
             <div class="cart-info">
-              <h3>Brick Breaker Emo</h3>
-              <p>Destrua tijolos em cascata com rebote sonoro em 8-bits.</p>
+              <h3>Tetris Clássico</h3>
+              <p>Encaixe os blocos retrô no clássico atemporal em Flash.</p>
             </div>
-            <span class="cart-badge locked">EM BREVE</span>
-          </div>
-
-          <div class="cartridge coming-soon" title="Em breve!">
-            <span class="cart-icon">👾</span>
-            <div class="cart-info">
-              <h3>Space Invaders Dark</h3>
-              <p>Defenda a galáxia roxa dos invasores alienígenas espaciais.</p>
-            </div>
-            <span class="cart-badge locked">EM BREVE</span>
+            <span class="cart-badge flash">FLASH (RUFFLE)</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Área de Jogo Carregado (Snake 99) -->
+    <!-- Área de Jogo Carregado -->
     <div class="window-card arcade-screen-card" id="activeGameArea">
       <div class="window-header">
         <div class="window-dots">
@@ -127,26 +127,37 @@
         <div class="window-title" id="activeGameTitle">running: snake_99.bin</div>
       </div>
       <div class="window-body text-center">
-        <div class="arcade-hud">
-          <span>SCORE: <b id="gameScore">0</b></span>
-          <span>RECORD: <b id="gameHighScore">0</b></span>
-        </div>
-        
-        <div class="canvas-wrapper">
-          <canvas id="arcadeCanvas" width="340" height="340" aria-label="Tela do Jogo"></canvas>
+        <!-- Tela do Snake (Canvas) -->
+        <div id="snakeView">
+          <div class="arcade-hud">
+            <span>SCORE: <b id="gameScore">0</b></span>
+            <span>RECORD: <b id="gameHighScore">0</b></span>
+          </div>
+          
+          <div class="canvas-wrapper">
+            <canvas id="arcadeCanvas" width="340" height="340" aria-label="Tela do Jogo"></canvas>
+          </div>
+
+          <div class="arcade-controls">
+            <button class="arcade-btn" id="startBtn">▶ INICIAR / REINICIAR</button>
+            <p class="control-hint">Use as setas do teclado ou as teclas W, A, S, D</p>
+            <div class="dpad-mobile" aria-label="Controles virtuais">
+              <button class="dpad-key" id="btnUp">▲</button>
+              <div class="dpad-mid">
+                <button class="dpad-key" id="btnLeft">◀</button>
+                <button class="dpad-key" id="btnRight">▶</button>
+              </div>
+              <button class="dpad-key" id="btnDown">▼</button>
+            </div>
+          </div>
         </div>
 
-        <div class="arcade-controls">
-          <button class="arcade-btn" id="startBtn">▶ INICIAR / REINICIAR</button>
-          <p class="control-hint">Use as setas do teclado ou as teclas W, A, S, D</p>
-          <div class="dpad-mobile" aria-label="Controles virtuais">
-            <button class="dpad-key" id="btnUp">▲</button>
-            <div class="dpad-mid">
-              <button class="dpad-key" id="btnLeft">◀</button>
-              <button class="dpad-key" id="btnRight">▶</button>
-            </div>
-            <button class="dpad-key" id="btnDown">▼</button>
+        <!-- Tela do Emulador Flash Ruffle -->
+        <div id="flashView" style="display: none;">
+          <div class="flash-player-container" id="ruffleContainer">
+            <!-- O player Ruffle é montado dinamicamente aqui -->
           </div>
+          <p class="control-hint" style="margin-top: 1rem;">✦ Emulado com Ruffle Flash Player diretamente no navegador ✦</p>
         </div>
       </div>
     </div>
@@ -156,6 +167,8 @@
     <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
   </footer>
 
+  <!-- Script Ruffle Emulador Flash WebAssembly -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -44,6 +44,19 @@ function initCustomCursor() {
     el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
   });
+
+  // Evitar que o cursor customizado trave ao passar por cima do vídeo (iframe do YouTube)
+  const videoFrames = document.querySelectorAll('.crt-frame, iframe');
+  videoFrames.forEach((frame) => {
+    frame.addEventListener('mouseenter', () => {
+      cursor.style.opacity = '0';
+      dot.style.opacity = '0';
+    });
+    frame.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '1';
+      dot.style.opacity = '1';
+    });
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -543,4 +556,62 @@ function initRetroSnake() {
   document.getElementById('btnRight')?.addEventListener('click', () => { if (velocity.x !== 1) velocity = { x: 1, y: 0 }; });
 
   draw();
+
+  // Gerenciador de Troca de Cartuchos (Snake vs Flash Ruffle)
+  initCartridgeSwitcher();
+}
+
+function initCartridgeSwitcher() {
+  const cartridges = document.querySelectorAll('.cartridge');
+  const snakeView = document.getElementById('snakeView');
+  const flashView = document.getElementById('flashView');
+  const ruffleContainer = document.getElementById('ruffleContainer');
+  const activeTitle = document.getElementById('activeGameTitle');
+  if (!cartridges.length || !snakeView || !flashView) return;
+
+  cartridges.forEach((cart) => {
+    cart.addEventListener('click', () => {
+      cartridges.forEach((c) => c.classList.remove('active'));
+      cart.classList.add('active');
+
+      const gameType = cart.getAttribute('data-game');
+      if (gameType === 'snake') {
+        flashView.style.display = 'none';
+        snakeView.style.display = 'block';
+        if (ruffleContainer) ruffleContainer.innerHTML = '';
+        if (activeTitle) activeTitle.textContent = 'running: snake_99.bin';
+      } else if (gameType === 'flash') {
+        const swfPath = cart.getAttribute('data-swf');
+        const gameName = cart.getAttribute('data-title');
+        snakeView.style.display = 'none';
+        flashView.style.display = 'block';
+        if (activeTitle) activeTitle.textContent = `running: ${gameName.toLowerCase().replace(/ /g, '_')}.swf`;
+
+        loadFlashGame(swfPath);
+      }
+    });
+  });
+}
+
+function loadFlashGame(swfPath) {
+  const container = document.getElementById('ruffleContainer');
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Criar elemento Ruffle player
+  if (window.RufflePlayer) {
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    player.style.width = '100%';
+    player.style.height = '480px';
+    container.appendChild(player);
+    player.load(swfPath);
+  } else {
+    container.innerHTML = `
+      <div style="padding: 2rem; color: var(--purple-bright);">
+        <p>Carregando emulador Ruffle Flash...</p>
+        <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 0.5rem;">Se demorar, verifique a conexão com a internet para baixar o emulador.</p>
+      </div>
+    `;
+  }
 }
