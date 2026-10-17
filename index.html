@@ -6,46 +6,46 @@
   <title>Sally Nuzzi ✦ Web Haven</title>
   <meta name="description" content="Portfólio pessoal, blog de memórias, jogos clássicos e bugigangas legais por Sally Nuzzi.">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Outfit (moderno, elegante e legível) + Fontes Retrô -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Cursor Personalizado Pusheen Vampire -->
   <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
   <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
+  <!-- Background Animated Grid / Ambient Glow -->
   <div class="bg-grid-overlay" aria-hidden="true"></div>
   <div class="glow-orb glow-top-left" aria-hidden="true"></div>
   <div class="glow-orb glow-bottom-right" aria-hidden="true"></div>
 
-  <!-- Audio Element -->
+  <!-- Elemento de Áudio Oculto -->
   <audio id="ambientAudio" loop preload="none"></audio>
 
-  <!-- Header Global com Player Completo e Contador de Visitantes -->
+  <!-- Header Global com Player Completo, Contador e Navegação de Âncoras -->
   <header class="site-header">
     <div class="header-left">
       <div class="logo-area">
         <span class="pixel-star">✦</span>
-        <a href="index.html" class="site-title-link">
+        <a href="#about" class="site-title-link">
           <span class="site-title">SALLY_NUZZI.exe</span>
         </a>
         <span class="status-badge" title="Status Online">● ONLINE</span>
-        <!-- Contador de Visitantes no Cabeçalho -->
         <div class="header-counter-pill" title="Total de visitas registradas">
           <span class="counter-label">VISITAS:</span>
           <span class="counter-num" id="headerVisitCount">001337</span>
         </div>
       </div>
 
-      <!-- Player de Áudio Expandido (Prev, Play, Next, Marquee Track Name, Mute/Unmute) -->
+      <!-- Player de Áudio Expandido -->
       <div class="header-audio-player" id="headerPlayer">
-        <!-- Letreiro da Música em Ciclo Contínuo -->
         <div class="track-marquee-wrapper" title="Música em reprodução">
           <div class="track-marquee-text" id="trackMarqueeText">
-            <span>✦ Sintetizador Lofi Cósmico — Sally Nuzzi Sound ✦</span>
+            <span>✦ Bring Me The Horizon — Throne ✦</span>
           </div>
         </div>
 
@@ -60,7 +60,6 @@
             <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
           </div>
 
-          <!-- Volume com Mute Toggle no Ícone -->
           <div class="header-volume-wrap">
             <button id="muteToggleBtn" class="mute-btn" title="Mutar / Desmutar (clique aqui)" aria-label="Mutar ou Desmutar Som">🔊</button>
             <input type="range" id="globalVolumeSlider" min="0" max="100" value="40" aria-label="Volume">
@@ -69,24 +68,28 @@
       </div>
     </div>
 
+    <!-- Navegação por Âncoras Suaves no Feed -->
     <nav class="nav-links" aria-label="Navegação principal">
-      <a href="index.html#about" class="nav-item">/sobre</a>
-      <a href="index.html#blog" class="nav-item">/blog</a>
-      <a href="jogos.html" class="nav-item">/arcade-jogos</a>
-      <a href="index.html#media" class="nav-item">/tv</a>
-      <a href="index.html#pets" class="nav-item">/companheiros</a>
+      <a href="#about" class="nav-item">/sobre</a>
+      <a href="#lol" class="nav-item">/lol</a>
+      <a href="#arcade" class="nav-item">/arcade</a>
+      <a href="#blog" class="nav-item">/blog</a>
+      <a href="#media" class="nav-item">/tv</a>
+      <a href="#pets" class="nav-item">/companheiros</a>
+      <a href="#steam" class="nav-item">/steam</a>
     </nav>
   </header>
 
-  <!-- Main Content Layout -->
-  <main class="main-wrapper">
-    <!-- Hero Profile Section -->
+  <!-- Feed Linear: Tópico por Tópico (Rolagem Infinita Estilo Feed) -->
+  <main class="main-wrapper feed-container">
+
+    <!-- 1. Tópico: Sobre / Profile -->
     <section id="about" class="window-card hero-section">
       <div class="window-header">
-        <div class="window-dots">
-          <span class="dot close"></span>
-          <span class="dot minimize"></span>
-          <span class="dot maximize"></span>
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
         </div>
         <div class="window-title">profile_viewer.sys</div>
       </div>
@@ -114,311 +117,299 @@
       </div>
     </section>
 
-    <!-- Layout Grid com 2 Colunas -->
-    <div class="content-grid">
-      <!-- Coluna Principal: Blog e TV -->
-      <div class="grid-primary">
+    <!-- 2. Tópico: League of Legends (Purple#diva) -->
+    <section id="lol" class="window-card lol-window">
+      <div class="window-header lol-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">lol_summoner.api</div>
+        <span class="lol-region-tag">BR SERVER</span>
+      </div>
+      <div class="window-body lol-body">
         
-        <!-- Seção Mini Blog: Vozes da Minha Cabeça -->
-        <section id="blog" class="window-card">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
-            </div>
-            <div class="window-title">vozes_da_minha_cabeça.log</div>
+        <div class="lol-profile-top">
+          <div class="lol-avatar-container">
+            <img src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon7175.jpg" alt="Ícone de Invocador" class="lol-summoner-icon" onerror="this.src='assets/images/Avatar.png'">
+            <span class="lol-level-pill">✦ BR</span>
           </div>
-          <div class="window-body">
-            <h2 class="section-title">Últimas Transmissões</h2>
+          <div class="lol-profile-info">
+            <div class="lol-name-row">
+              <h3 class="lol-name">Purple</h3>
+              <span class="lol-tag">#diva</span>
+            </div>
+            <div class="lol-tier-badge">
+              <img src="https://opgg-static.akamaized.net/images/medals_new/emerald.png" alt="Elo Esmeralda" class="tier-crest-img">
+              <div class="tier-text-wrap">
+                <span class="tier-name">Esmeralda IV</span>
+                <span class="tier-lp">5 LP ✦ 52% Winrate Geral</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lol-stats-row">
+          <div class="lol-stat-box">
+            <span class="lol-stat-label">VITÓRIAS</span>
+            <span class="lol-stat-val win">374V</span>
+          </div>
+          <div class="lol-stat-box">
+            <span class="lol-stat-label">DERROTAS</span>
+            <span class="lol-stat-val loss">349D</span>
+          </div>
+          <div class="lol-stat-box">
+            <span class="lol-stat-label">TAXA DE VITÓRIA</span>
+            <span class="lol-stat-val winrate">52%</span>
+          </div>
+        </div>
+
+        <div class="lol-masteries-section">
+          <div class="mastery-section-title">
+            <span>✦ CAMPEÕES FAVORITOS & MAESTRIAS ✦</span>
+          </div>
+          <div class="mastery-champs-list">
             
-            <article class="post-card">
-              <div class="post-meta">
-                <span class="post-date">✦ 14 de Outubro, 2026</span>
-                <span class="post-mood">Mood: Ansiosa com código ⚡</span>
+            <div class="mastery-champ-card">
+              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png" alt="Seraphine" class="champ-face">
+              <div class="champ-meta">
+                <span class="champ-name">Seraphine</span>
+                <span class="champ-role">Maga / Suporte</span>
               </div>
-              <h3 class="post-title">O renascimento do meu site pessoal</h3>
-              <p class="post-excerpt">
-                Sempre senti falta da internet dos anos 2000, onde cada página tinha a sua própria alma,
-                cursores brilhantes e botões esquisitos. Este site é o meu manifesto contra páginas sem vida.
-              </p>
-            </article>
-
-            <article class="post-card">
-              <div class="post-meta">
-                <span class="post-date">✦ Arquivo de Memória</span>
-                <span class="post-mood">Mood: Nostalgia Pura 📼</span>
+              <div class="champ-rate">
+                <span class="win-pct">59%</span>
+                <span class="win-count">65V 46D</span>
               </div>
-              <h3 class="post-title">Colecionando momentos e referências</h3>
-              <p class="post-excerpt">
-                Preto, roxo profundo e luzes neon. Aqui ficarão guardadas listas de coisas que me inspiram,
-                análises de jogos indie, playlists e devaneios de madrugada.
-              </p>
-            </article>
-          </div>
-        </section>
+            </div>
 
-        <!-- Seção de Vídeos / CRT Player -->
-        <section id="media" class="window-card">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
+            <div class="mastery-champ-card">
+              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lux.png" alt="Lux" class="champ-face">
+              <div class="champ-meta">
+                <span class="champ-name">Lux</span>
+                <span class="champ-role">Dama da Luz</span>
+              </div>
+              <div class="champ-rate">
+                <span class="win-pct">53%</span>
+                <span class="win-count">57V 51D</span>
+              </div>
             </div>
-            <div class="window-title">sally_nuzzi.tv</div>
-          </div>
-          <div class="window-body">
-            <h2 class="section-title">Vídeo novo no canal, já viu?</h2>
-            <div class="crt-frame">
-              <div class="crt-scanlines"></div>
-              <iframe 
-                class="video-embed" 
-                src="https://www.youtube.com/embed/ngcDBn1ckwA" 
-                title="Vídeo do Canal Sally Nuzzi" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
+
+            <div class="mastery-champ-card">
+              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png" alt="Caitlyn" class="champ-face">
+              <div class="champ-meta">
+                <span class="champ-name">Caitlyn</span>
+                <span class="champ-role">Xerife de Piltover</span>
+              </div>
+              <div class="champ-rate">
+                <span class="win-pct">47%</span>
+                <span class="win-count">35V 39D</span>
+              </div>
             </div>
-            <p class="media-caption">✦ Uma vibe sonora para acompanhar sua visita ✦</p>
+
+            <div class="mastery-champ-card">
+              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Soraka.png" alt="Soraka" class="champ-face">
+              <div class="champ-meta">
+                <span class="champ-name">Soraka</span>
+                <span class="champ-role">Filha das Estrelas</span>
+              </div>
+              <div class="champ-rate">
+                <span class="win-pct">67%</span>
+                <span class="win-count">Recente</span>
+              </div>
+            </div>
+
           </div>
-        </section>
+        </div>
+
+        <div class="lol-footer-btn">
+          <a href="https://op.gg/pt/lol/summoners/br/Purple-diva" target="_blank" rel="noopener noreferrer" class="opgg-direct-btn">
+            VER HISTÓRICO COMPLETO NO OP.GG ➔
+          </a>
+        </div>
 
       </div>
+    </section>
 
-      <!-- Coluna Direita: Atalho de Jogos, Bichinhos & Bugigangas -->
-      <aside class="grid-secondary">
+    <!-- 3. Tópico: Salão de Jogos Retrô (Arcade Preview) -->
+    <section id="arcade" class="window-card arcade-preview-card">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">arcade_room.exe</div>
+      </div>
+      <div class="window-body text-center">
+        <div class="arcade-icon-art">🕹️ 👾 🎮</div>
+        <h3 class="arcade-card-title">Salão de Jogos Retrô & Flash</h3>
+        <p class="arcade-card-desc">Uma página inteira e imersiva só de joguinhos clássicos: Snake 99 Neon, Papa's Pizzeria e Tetris com emulador Ruffle!</p>
+        <a href="jogos.html" class="enter-arcade-link">▶ ENTRAR NO SALÃO DE JOGOS ➔</a>
+      </div>
+    </section>
+
+    <!-- 4. Tópico: Mini Blog / Vozes da Minha Cabeça -->
+    <section id="blog" class="window-card">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">vozes_da_minha_cabeça.log</div>
+      </div>
+      <div class="window-body">
+        <h2 class="section-title">Últimas Transmissões</h2>
         
-        <!-- Módulo Oficial League of Legends: Purple#diva -->
-        <div id="lolCard" class="window-card lol-window">
-          <div class="window-header lol-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
-            </div>
-            <div class="window-title">lol_summoner.api</div>
-            <span class="lol-region-tag">BR</span>
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-date">✦ 14 de Outubro, 2026</span>
+            <span class="post-mood">Mood: Ansiosa com código ⚡</span>
           </div>
-          <div class="window-body lol-body">
-            
-            <!-- Invocadora & Elo -->
-            <div class="lol-profile-top">
-              <div class="lol-avatar-container">
-                <img src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon7175.jpg" alt="Ícone de Invocador" class="lol-summoner-icon" onerror="this.src='assets/images/Avatar.png'">
-                <span class="lol-level-pill">✦ BR</span>
-              </div>
-              <div class="lol-profile-info">
-                <div class="lol-name-row">
-                  <h3 class="lol-name">Purple</h3>
-                  <span class="lol-tag">#diva</span>
-                </div>
-                <div class="lol-tier-badge">
-                  <img src="https://opgg-static.akamaized.net/images/medals_new/emerald.png" alt="Elo Esmeralda" class="tier-crest-img">
-                  <div class="tier-text-wrap">
-                    <span class="tier-name">Esmeralda IV</span>
-                    <span class="tier-lp">5 LP ✦ 52% Winrate</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <h3 class="post-title">O renascimento do meu site pessoal</h3>
+          <p class="post-excerpt">
+            Sempre senti falta da internet dos anos 2000, onde cada página tinha a sua própria alma,
+            cursores brilhantes e botões esquisitos. Este site é o meu manifesto contra páginas sem vida.
+          </p>
+        </article>
 
-            <!-- Resumo das Ranqueadas -->
-            <div class="lol-stats-row">
-              <div class="lol-stat-box">
-                <span class="lol-stat-label">VITÓRIAS</span>
-                <span class="lol-stat-val win">374V</span>
-              </div>
-              <div class="lol-stat-box">
-                <span class="lol-stat-label">DERROTAS</span>
-                <span class="lol-stat-val loss">349D</span>
-              </div>
-              <div class="lol-stat-box">
-                <span class="lol-stat-label">TAXA</span>
-                <span class="lol-stat-val winrate">52%</span>
-              </div>
-            </div>
-
-            <!-- Campeões com Maior Maestria / Destaques -->
-            <div class="lol-masteries-section">
-              <div class="mastery-section-title">
-                <span>✦ CAMPEÕES & MAESTRIAS ✦</span>
-              </div>
-              <div class="mastery-champs-list">
-                
-                <div class="mastery-champ-card">
-                  <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png" alt="Seraphine" class="champ-face">
-                  <div class="champ-meta">
-                    <span class="champ-name">Seraphine</span>
-                    <span class="champ-role">Maga / Suporte</span>
-                  </div>
-                  <div class="champ-rate">
-                    <span class="win-pct">59%</span>
-                    <span class="win-count">65V 46D</span>
-                  </div>
-                </div>
-
-                <div class="mastery-champ-card">
-                  <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lux.png" alt="Lux" class="champ-face">
-                  <div class="champ-meta">
-                    <span class="champ-name">Lux</span>
-                    <span class="champ-role">Dama da Luz</span>
-                  </div>
-                  <div class="champ-rate">
-                    <span class="win-pct">53%</span>
-                    <span class="win-count">57V 51D</span>
-                  </div>
-                </div>
-
-                <div class="mastery-champ-card">
-                  <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png" alt="Caitlyn" class="champ-face">
-                  <div class="champ-meta">
-                    <span class="champ-name">Caitlyn</span>
-                    <span class="champ-role">Xerife de Piltover</span>
-                  </div>
-                  <div class="champ-rate">
-                    <span class="win-pct">47%</span>
-                    <span class="win-count">35V 39D</span>
-                  </div>
-                </div>
-
-                <div class="mastery-champ-card">
-                  <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Soraka.png" alt="Soraka" class="champ-face">
-                  <div class="champ-meta">
-                    <span class="champ-name">Soraka</span>
-                    <span class="champ-role">Filha das Estrelas</span>
-                  </div>
-                  <div class="champ-rate">
-                    <span class="win-pct">67%</span>
-                    <span class="win-count">Recente</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="lol-footer-btn">
-              <a href="https://op.gg/pt/lol/summoners/br/Purple-diva" target="_blank" rel="noopener noreferrer" class="opgg-direct-btn">
-                VER HISTÓRICO NO OP.GG ➔
-              </a>
-            </div>
-
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-date">✦ Arquivo de Memória</span>
+            <span class="post-mood">Mood: Nostalgia Pura 📼</span>
           </div>
+          <h3 class="post-title">Colecionando momentos e referências</h3>
+          <p class="post-excerpt">
+            Preto, roxo profundo e luzes neon. Aqui ficarão guardadas listas de coisas que me inspiram,
+            análises de jogos indie, playlists e devaneios de madrugada.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Tópico: CRT TV / Canal de Vídeo -->
+    <section id="media" class="window-card">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
         </div>
-
-        <!-- Cartão Atalho para a Nova Sala de Jogos -->
-        <div class="window-card arcade-preview-card">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
-            </div>
-            <div class="window-title">arcade_room.exe</div>
-          </div>
-          <div class="window-body text-center">
-            <div class="arcade-icon-art">🕹️ 👾 🎮</div>
-            <h3 class="arcade-card-title">Salão de Jogos Retrô</h3>
-            <p class="arcade-card-desc">Uma página inteira só de joguinhos clássicos (Snake 99, Papa's Pizzeria e Tetris)!</p>
-            <a href="jogos.html" class="enter-arcade-link">▶ ENTRAR NO ARCADE</a>
-          </div>
+        <div class="window-title">sally_nuzzi.tv</div>
+      </div>
+      <div class="window-body">
+        <h2 class="section-title">Vídeo novo no canal, já viu?</h2>
+        <div class="crt-frame">
+          <div class="crt-scanlines"></div>
+          <iframe 
+            class="video-embed" 
+            src="https://www.youtube.com/embed/ngcDBn1ckwA" 
+            title="Vídeo do Canal Sally Nuzzi" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
         </div>
+        <p class="media-caption">✦ Uma vibe sonora para acompanhar sua visita ✦</p>
+      </div>
+    </section>
 
-        <!-- Hall da Fama dos Bichinhos -->
-        <div id="pets" class="window-card">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
+    <!-- 6. Tópico: Companheiros de Vida (Pets) -->
+    <section id="pets" class="window-card">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">pet_squad.exe</div>
+      </div>
+      <div class="window-body pets-grid">
+        <h2 class="section-title">Companheiros de Vida</h2>
+        <p class="pets-hint">✦ Clique em um companheiro para ver sua galeria de fotos exclusiva!</p>
+        
+        <div class="pets-feed-layout">
+          <a href="pets.html?pet=floki" class="pet-item pet-link-card">
+            <div class="pet-img-wrap">
+              <img src="assets/images/floki.png" alt="Floki" class="pet-pic">
             </div>
-            <div class="window-title">pet_squad.exe</div>
+            <div class="pet-desc">
+              <h4>Floki 🐾 <span class="arrow-indicator">➔</span></h4>
+              <p>Guardião das madrugadas, caçador de carinho e fiscal de códigos.</p>
+            </div>
+          </a>
+
+          <a href="pets.html?pet=tom" class="pet-item pet-link-card">
+            <div class="pet-img-wrap">
+              <img src="assets/images/tom.png" alt="Tom" class="pet-pic">
+            </div>
+            <div class="pet-desc">
+              <h4>Tom 🐱 <span class="arrow-indicator">➔</span></h4>
+              <p>Mestre do sono profundo, ronrom terapêutico e observador sereno.</p>
+            </div>
+          </a>
+
+          <a href="pets.html?pet=cabide" class="pet-item pet-link-card">
+            <div class="pet-img-wrap">
+              <img src="assets/images/cabide.png" alt="Cabide" class="pet-pic">
+            </div>
+            <div class="pet-desc">
+              <h4>Cabide 🖤 <span class="arrow-indicator">➔</span></h4>
+              <p>Presença icônica e misteriosa da identidade visual.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Tópico: Steam Profile -->
+    <section id="steam" class="window-card steam-window">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">steam_profile.api</div>
+      </div>
+      <div class="window-body steam-body">
+        <div class="steam-user-header">
+          <div class="steam-avatar-wrap">
+            <img src="https://avatars.fastly.steamstatic.com/b8a6f62b8b7bd48279016ddb5616f9a555b0cf5d_full.jpg" alt="Avatar Steam de Cellinda" class="steam-avatar">
+            <span class="steam-status-dot online" title="Status: Online"></span>
           </div>
-          <div class="window-body pets-grid">
-            <h2 class="section-title">Companheiros de Vida</h2>
-            <p class="pets-hint">✦ Clique em um companheiro para ver sua galeria!</p>
-            
-            <a href="pets.html?pet=floki" class="pet-item pet-link-card">
-              <div class="pet-img-wrap">
-                <img src="assets/images/floki.png" alt="Floki" class="pet-pic">
-              </div>
-              <div class="pet-desc">
-                <h4>Floki 🐾 <span class="arrow-indicator">➔</span></h4>
-                <p>Guardião das madrugadas, caçador de carinho e fiscal de códigos.</p>
-              </div>
-            </a>
-
-            <a href="pets.html?pet=tom" class="pet-item pet-link-card">
-              <div class="pet-img-wrap">
-                <img src="assets/images/tom.png" alt="Tom" class="pet-pic">
-              </div>
-              <div class="pet-desc">
-                <h4>Tom 🐱 <span class="arrow-indicator">➔</span></h4>
-                <p>Mestre do sono profundo, ronrom terapêutico e observador sereno.</p>
-              </div>
-            </a>
-
-            <a href="pets.html?pet=cabide" class="pet-item pet-link-card">
-              <div class="pet-img-wrap">
-                <img src="assets/images/cabide.png" alt="Cabide" class="pet-pic">
-              </div>
-              <div class="pet-desc">
-                <h4>Cabide 🖤 <span class="arrow-indicator">➔</span></h4>
-                <p>Presença icônica e misteriosa da identidade visual.</p>
-              </div>
+          <div class="steam-info">
+            <div class="steam-name-row">
+              <h3 class="steam-name">Cellinda</h3>
+              <span class="steam-lvl-badge" title="Status">ONLINE ●</span>
+            </div>
+            <p class="steam-status-text">✦ steamcommunity.com/profiles/76561198312902712</p>
+            <a href="https://steamcommunity.com/profiles/76561198312902712/" target="_blank" rel="noopener noreferrer" class="steam-link-btn">
+              ABRIR NO APLICATIVO STEAM ➔
             </a>
           </div>
         </div>
 
-        <!-- Card Perfil Steam Estilizado com Dados Reais da Conta -->
-        <div id="steamCard" class="window-card steam-window">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot close"></span>
-              <span class="dot minimize"></span>
-              <span class="dot maximize"></span>
-            </div>
-            <div class="window-title">steam_profile.api</div>
+        <div class="steam-recent-activity">
+          <div class="activity-header">
+            <span class="act-title">ATIVIDADE & JOGOS FAVORITOS</span>
           </div>
-          <div class="window-body steam-body">
-            <div class="steam-user-header">
-              <div class="steam-avatar-wrap">
-                <img src="https://avatars.fastly.steamstatic.com/b8a6f62b8b7bd48279016ddb5616f9a555b0cf5d_full.jpg" alt="Avatar Steam de Cellinda" class="steam-avatar">
-                <span class="steam-status-dot online" title="Status: Online"></span>
-              </div>
-              <div class="steam-info">
-                <div class="steam-name-row">
-                  <h3 class="steam-name">Cellinda</h3>
-                  <span class="steam-lvl-badge" title="Status">ONLINE ●</span>
-                </div>
-                <p class="steam-status-text">✦ steamcommunity.com/profiles/76561198312902712</p>
-                <a href="https://steamcommunity.com/profiles/76561198312902712/" target="_blank" rel="noopener noreferrer" class="steam-link-btn">
-                  ABRIR NO APLICATIVO STEAM ➔
-                </a>
-              </div>
-            </div>
-
-            <div class="steam-recent-activity">
-              <div class="activity-header">
-                <span class="act-title">ATIVIDADE & JOGOS FAVORITOS</span>
-              </div>
-              <div class="games-badge-list">
-                <div class="game-tag-item">🎮 Stardew Valley</div>
-                <div class="game-tag-item">🦇 Dead by Daylight</div>
-                <div class="game-tag-item">🐱 Stray</div>
-                <div class="game-tag-item">⚔️ League of Legends / Riot</div>
-              </div>
-            </div>
+          <div class="games-badge-list">
+            <div class="game-tag-item">🎮 Stardew Valley</div>
+            <div class="game-tag-item">🦇 Dead by Daylight</div>
+            <div class="game-tag-item">🐱 Stray</div>
+            <div class="game-tag-item">⚔️ League of Legends / Riot</div>
           </div>
         </div>
+      </div>
+    </section>
 
-      </aside>
-    </div>
   </main>
 
+  <!-- Rodapé Estilizado -->
   <footer class="site-footer">
     <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
-    <p class="sub-footer">Hospedado no GitHub Pages ✦ Compatível com qualquer tela</p>
+    <p class="sub-footer">Hospedado no GitHub Pages ✦ Rolagem de Feed Contínua</p>
   </footer>
 
   <script src="script.js"></script>
