@@ -951,6 +951,266 @@ body {
   border: 1px solid #1b2838;
 }
 
+/* ==========================================================================
+   League of Legends Summoner Card (Purple#diva)
+   ========================================================================== */
+.lol-window {
+  border-color: #0ac8b9;
+  box-shadow: 0 0 20px rgba(10, 200, 185, 0.25);
+}
+
+.lol-header {
+  background: linear-gradient(90deg, #091428, #0a323c);
+  justify-content: space-between;
+}
+
+.lol-region-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: #0ac8b9;
+  background: rgba(10, 200, 185, 0.15);
+  border: 1px solid #0ac8b9;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.lol-body {
+  background: linear-gradient(180deg, #091428 0%, #030811 100%);
+  padding: 1.2rem;
+}
+
+.lol-profile-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.lol-avatar-container {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid #c8aa6e; /* Borda dourada hextech */
+  box-shadow: 0 0 12px rgba(200, 170, 110, 0.4);
+  flex-shrink: 0;
+  background: #000;
+}
+
+.lol-summoner-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.lol-level-pill {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #091428;
+  border: 1px solid #c8aa6e;
+  color: #f0e6d2;
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+}
+
+.lol-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.lol-name {
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
+  color: #f0e6d2;
+  letter-spacing: 0.5px;
+}
+
+.lol-tag {
+  font-family: var(--font-retro);
+  font-size: 1.1rem;
+  color: #c77dff;
+}
+
+.lol-tier-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(10, 200, 185, 0.08);
+  border: 1px solid rgba(10, 200, 185, 0.25);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.tier-crest-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px #0ac8b9);
+}
+
+.tier-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-name {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: #0ac8b9;
+}
+
+.tier-lp {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.lol-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.lol-stat-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #1e2837;
+  padding: 0.4rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.lol-stat-label {
+  display: block;
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.lol-stat-val {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+}
+
+.lol-stat-val.win { color: #57cbde; }
+.lol-stat-val.loss { color: #e84057; }
+.lol-stat-val.winrate { color: #0ac8b9; }
+
+.lol-masteries-section {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #1e2837;
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.mastery-section-title {
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: #c8aa6e;
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.mastery-champs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mastery-champ-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(10, 20, 40, 0.6);
+  border: 1px solid #1e2837;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.mastery-champ-card:hover {
+  transform: translateX(3px);
+  border-color: #c8aa6e;
+}
+
+.champ-face {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid #0ac8b9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.champ-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.champ-name {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: #f0e6d2;
+}
+
+.champ-role {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.champ-rate {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.win-pct {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: #57cbde;
+}
+
+.win-count {
+  font-family: var(--font-retro);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.lol-footer-btn {
+  text-align: center;
+}
+
+.opgg-direct-btn {
+  display: block;
+  background: linear-gradient(135deg, #091428, #0a323c);
+  color: #0ac8b9;
+  border: 1px solid #0ac8b9;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(10, 200, 185, 0.2);
+  transition: all 0.2s;
+}
+
+.opgg-direct-btn:hover {
+  background: #0ac8b9;
+  color: #091428;
+  box-shadow: 0 0 15px #0ac8b9;
+}
+
 .arcade-hud {
   display: flex;
   justify-content: space-around;

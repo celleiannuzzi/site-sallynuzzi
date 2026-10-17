@@ -1,0 +1,43 @@
+{
+  "summonerName": "Purple",
+  "tagLine": "diva",
+  "server": "BR",
+  "profileIcon": "https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon7175.jpg",
+  "tier": "Esmeralda IV",
+  "tierIcon": "https://opgg-static.akamaized.net/images/medals_new/emerald.png",
+  "lp": 5,
+  "winRate": "52%",
+  "wins": 374,
+  "losses": 349,
+  "opggUrl": "https://op.gg/pt/lol/summoners/br/Purple-diva",
+  "topChampions": [
+    {
+      "name": "Seraphine",
+      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png",
+      "role": "Maga / Suporte",
+      "winRate": "59%",
+      "record": "65V 46D"
+    },
+    {
+      "name": "Lux",
+      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lux.png",
+      "role": "Maga de Luz",
+      "winRate": "53%",
+      "record": "57V 51D"
+    },
+    {
+      "name": "Caitlyn",
+      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png",
+      "role": "Atiradora",
+      "winRate": "47%",
+      "record": "35V 39D"
+    },
+    {
+      "name": "Soraka",
+      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Soraka.png",
+      "role": "Guardiã Astral",
+      "winRate": "67%",
+      "record": "Recente"
+    }
+  ]
+}
