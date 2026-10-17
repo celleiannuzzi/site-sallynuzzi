@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale Comigo ✦ Sally Nuzzi</title>
+  <meta name="description" content="Envie uma mensagem ou entre em contato com Sally Nuzzi.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="glow-orb glow-top-left" aria-hidden="true"></div>
+  <div class="glow-orb glow-bottom-right" aria-hidden="true"></div>
+
+  <!-- Header Global com Player Sticky -->
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo-area">
+        <span class="pixel-star">✦</span>
+        <a href="index.html" class="site-title-link">
+          <span class="site-title">SALLY_NUZZI.exe</span>
+        </a>
+        <span class="status-badge" title="Status Online">● ONLINE</span>
+      </div>
+
+      <div class="header-audio-player" id="headerPlayer">
+        <button id="globalAudioBtn" class="audio-toggle-btn" aria-label="Tocar ou Pausar">
+          <span class="btn-icon">▶</span>
+        </button>
+        <div class="header-visualizer" id="headerVisualizer" aria-hidden="true">
+          <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
+        </div>
+        <div class="header-volume-wrap">
+          <button id="muteToggleBtn" class="mute-btn" title="Mutar / Desmutar" aria-label="Mutar Som">🔊</button>
+          <input type="range" id="globalVolumeSlider" min="0" max="100" value="40" aria-label="Volume">
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">← Voltar para a Home</a>
+    </nav>
+  </header>
+
+  <main class="main-wrapper contact-page">
+    <section class="window-card contact-window">
+      <div class="window-header">
+        <div class="window-dots" aria-hidden="true">
+          <span class="win-icon star">★</span>
+          <span class="win-icon heart">♥</span>
+          <span class="win-icon star">★</span>
+        </div>
+        <div class="window-title">fale_comigo.msg</div>
+      </div>
+      <div class="window-body">
+        
+        <div class="contact-header-text">
+          <h1 class="section-title">✉️ Envie uma Mensagem</h1>
+          <p class="contact-subtitle">
+            Tem alguma ideia legal, dica de jogo, bugiganga pra compartilhar ou só quer mandar um oi? 
+            Preencha os campos abaixo:
+          </p>
+        </div>
+
+        <form id="contactForm" class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem pronta para envio! Em breve conectaremos com seu serviço de e-mail.');">
+          <div class="form-group">
+            <label for="userName">Seu Nome / Como quer ser chamado(a):</label>
+            <input type="text" id="userName" name="name" placeholder="Ex: Viajante da Web" required>
+          </div>
+
+          <div class="form-group">
+            <label for="userEmail">Seu E-mail (para eu poder te responder):</label>
+            <input type="email" id="userEmail" name="email" placeholder="seu-email@exemplo.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="userMessage">Sua Mensagem:</label>
+            <textarea id="userMessage" name="message" rows="5" placeholder="Escreva aqui seus pensamentos, ideias ou recados..." required></textarea>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="contact-submit-btn">
+              <span>✦ ENVIAR MENSAGEM ➔</span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Feito com amor, caos e café por Marcelle Iannuzzi ✦ 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

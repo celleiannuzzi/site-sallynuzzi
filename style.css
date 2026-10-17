@@ -1460,6 +1460,129 @@ body {
   text-align: center;
 }
 
+.mastery-badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.2rem;
+}
+
+.mastery-badge.m7 {
+  background: rgba(10, 200, 185, 0.15);
+  border: 1px solid #0ac8b9;
+  color: #0ac8b9;
+}
+
+.mastery-badge.m6 {
+  background: rgba(157, 78, 221, 0.2);
+  border: 1px solid var(--purple-bright);
+  color: var(--purple-neon);
+}
+
+.mastery-pts {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* Footer & Fale Comigo */
+.contact-link-row {
+  margin-top: 1.2rem;
+}
+
+.footer-contact-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-main));
+  color: #fff;
+  border: 1px solid var(--purple-bright);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+  transition: all 0.2s;
+}
+
+.footer-contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px var(--purple-bright);
+  background: var(--purple-main);
+  color: #fff;
+}
+
+/* Contact Page Form */
+.contact-window {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.contact-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--purple-neon);
+}
+
+.form-group input, .form-group textarea {
+  background: rgba(10, 6, 20, 0.8);
+  border: 1px solid var(--bg-card-border);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  border-color: var(--purple-bright);
+  box-shadow: 0 0 10px rgba(157, 78, 221, 0.35);
+}
+
+.contact-submit-btn {
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-main));
+  color: #fff;
+  border: 1px solid var(--purple-bright);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+  transition: all 0.2s;
+}
+
+.contact-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px var(--purple-bright);
+}
+
 /* Footer */
 .site-footer {
   text-align: center;

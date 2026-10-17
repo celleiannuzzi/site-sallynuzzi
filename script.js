@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomCursor();
   initHeaderVisitorCounter();
   initGlobalHeaderAudio();
+  loadDynamicSobreData();
   
   if (document.getElementById('arcadeCanvas')) {
     initRetroSnake();
@@ -14,6 +15,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initPetGalleryPage();
   }
 });
+
+/* --------------------------------------------------------------------------
+   0. Carregamento Dinâmico do Sobre Mim (assets/sobre.json)
+   -------------------------------------------------------------------------- */
+function loadDynamicSobreData() {
+  const bioEl = document.getElementById('dynamicBio');
+  const statusEl = document.getElementById('dynamicStatusTag');
+  const taglineEl = document.getElementById('dynamicTagline');
+  const badgesEl = document.getElementById('dynamicBadges');
+  if (!bioEl) return;
+
+  fetch('assets/sobre.json')
+    .then(res => res.json())
+    .then(data => {
+      if (data.statusTag && statusEl) statusEl.textContent = data.statusTag;
+      if (data.tagline && taglineEl) taglineEl.textContent = data.tagline;
+      if (data.bio && bioEl) bioEl.textContent = data.bio;
+      if (data.badges && badgesEl && Array.isArray(data.badges)) {
+        badgesEl.innerHTML = '';
+        data.badges.forEach(b => {
+          const span = document.createElement('span');
+          span.className = 'tag-badge';
+          span.textContent = b;
+          badgesEl.appendChild(span);
+        });
+      }
+    })
+    .catch(err => {
+      console.warn('Usando valores padrão do HTML para o Sobre Mim:', err);
+    });
+}
 
 /* --------------------------------------------------------------------------
    1. Cursor Personalizado com Efeito Magnético e Brilho

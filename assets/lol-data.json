@@ -10,34 +10,38 @@
   "wins": 374,
   "losses": 349,
   "opggUrl": "https://op.gg/pt/lol/summoners/br/Purple-diva",
-  "topChampions": [
+  "masteries": [
+    {
+      "name": "Jinx",
+      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Jinx.png",
+      "role": "O Gatilho Solto",
+      "level": 7,
+      "points": "285.400 pts",
+      "badge": "MAESTRIA 7"
+    },
     {
       "name": "Seraphine",
       "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png",
-      "role": "Maga / Suporte",
-      "winRate": "59%",
-      "record": "65V 46D"
+      "role": "A Cantora Sonhadora",
+      "level": 7,
+      "points": "194.200 pts",
+      "badge": "MAESTRIA 7"
     },
     {
       "name": "Lux",
       "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lux.png",
-      "role": "Maga de Luz",
-      "winRate": "53%",
-      "record": "57V 51D"
+      "role": "A Dama da Luz",
+      "level": 7,
+      "points": "162.800 pts",
+      "badge": "MAESTRIA 7"
     },
     {
       "name": "Caitlyn",
       "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png",
-      "role": "Atiradora",
-      "winRate": "47%",
-      "record": "35V 39D"
-    },
-    {
-      "name": "Soraka",
-      "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Soraka.png",
-      "role": "Guardiã Astral",
-      "winRate": "67%",
-      "record": "Recente"
+      "role": "A Xerife de Piltover",
+      "level": 6,
+      "points": "118.500 pts",
+      "badge": "MAESTRIA 6"
     }
   ]
 }

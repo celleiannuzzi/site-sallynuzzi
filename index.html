@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sally Nuzzi ✦ Web Haven</title>
-  <meta name="description" content="Portfólio pessoal, blog de memórias, jogos clássicos e bugigangas legais por Sally Nuzzi.">
+  <meta name="description" content="Portfólio pessoal, blog de memórias, jogos clássicos e bugigangas legais por Marcelle Iannuzzi.">
   
   <!-- Google Fonts: Outfit (moderno, elegante e legível) + Fontes Retrô -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,22 +68,22 @@
       </div>
     </div>
 
-    <!-- Navegação por Âncoras Suaves no Feed -->
+    <!-- Navegação por Âncoras Suaves na Ordem Solicitada: sobre -> lol -> steam -> blog -> tv -> pets -> arcade -->
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="#about" class="nav-item">/sobre</a>
       <a href="#lol" class="nav-item">/lol</a>
-      <a href="#arcade" class="nav-item">/arcade</a>
+      <a href="#steam" class="nav-item">/steam</a>
       <a href="#blog" class="nav-item">/blog</a>
       <a href="#media" class="nav-item">/tv</a>
       <a href="#pets" class="nav-item">/companheiros</a>
-      <a href="#steam" class="nav-item">/steam</a>
+      <a href="#arcade" class="nav-item">/arcade</a>
     </nav>
   </header>
 
   <!-- Feed Linear: Tópico por Tópico (Rolagem Infinita Estilo Feed) -->
   <main class="main-wrapper feed-container">
 
-    <!-- 1. Tópico: Sobre / Profile -->
+    <!-- 1. Tópico: Sobre Mim (sobre_mim.pdf) - Dinâmico via assets/sobre.json -->
     <section id="about" class="window-card hero-section">
       <div class="window-header">
         <div class="window-dots" aria-hidden="true">
@@ -91,33 +91,37 @@
           <span class="win-icon heart">♥</span>
           <span class="win-icon star">★</span>
         </div>
-        <div class="window-title">profile_viewer.sys</div>
+        <div class="window-title">sobre_mim.pdf</div>
       </div>
       <div class="window-body hero-content">
         <div class="avatar-container">
           <div class="avatar-frame">
             <img src="assets/images/Avatar.png" alt="Avatar ilustrado de Sally Nuzzi" class="avatar-img">
           </div>
-          <div class="status-tag">Status: criando bugigangas virtuais</div>
+          <div class="status-tag" id="dynamicStatusTag">Status: criando bugigangas virtuais</div>
         </div>
         <div class="hero-text">
-          <h1 class="glitch-text" data-text="Sally Nuzzi">Sally Nuzzi</h1>
-          <p class="tagline">✦ Bem-vindo(a) ao meu recanto pessoal da web ✦</p>
-          <p class="bio-paragraph">
+          <h1 class="glitch-text" id="dynamicName" data-text="Sally Nuzzi">Sally Nuzzi</h1>
+          <p class="tagline" id="dynamicTagline">✦ Bem-vindo(a) ao meu recanto pessoal da web ✦</p>
+          <p class="bio-paragraph" id="dynamicBio">
             Um espaço caótico-organizado criado para guardar tudo que amo: devaneios em forma de texto,
             jogos clássicos, estética emo/dark, vídeos favoritos e companheiros de jornada.
           </p>
-          <div class="badge-shelf">
+          <div class="badge-shelf" id="dynamicBadges">
             <span class="tag-badge">🎮 Gamer</span>
             <span class="tag-badge">🦇 Dark / Emo Aesthetic</span>
-            <span class="tag-badge">👾 Webcore</span>
+            <span class="tag-badge">💻 Desenvolvimento</span>
+            <span class="tag-badge">🤖 RPA</span>
+            <span class="tag-badge">⚡ Automações</span>
+            <span class="tag-badge">🍟 Batata frita</span>
+            <span class="tag-badge">🌙 O estranho mundo de Celle</span>
             <span class="tag-badge">☕ Coffee & Code</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. Tópico: League of Legends (Purple#diva) -->
+    <!-- 2. Tópico: League of Legends (Purple#diva) com Maestrias Reais -->
     <section id="lol" class="window-card lol-window">
       <div class="window-header lol-header">
         <div class="window-dots" aria-hidden="true">
@@ -144,78 +148,67 @@
               <img src="https://opgg-static.akamaized.net/images/medals_new/emerald.png" alt="Elo Esmeralda" class="tier-crest-img">
               <div class="tier-text-wrap">
                 <span class="tier-name">Esmeralda IV</span>
-                <span class="tier-lp">5 LP ✦ 52% Winrate Geral</span>
+                <span class="tier-lp">5 LP ✦ 52% Winrate Geral (374V / 349D)</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="lol-stats-row">
-          <div class="lol-stat-box">
-            <span class="lol-stat-label">VITÓRIAS</span>
-            <span class="lol-stat-val win">374V</span>
-          </div>
-          <div class="lol-stat-box">
-            <span class="lol-stat-label">DERROTAS</span>
-            <span class="lol-stat-val loss">349D</span>
-          </div>
-          <div class="lol-stat-box">
-            <span class="lol-stat-label">TAXA DE VITÓRIA</span>
-            <span class="lol-stat-val winrate">52%</span>
           </div>
         </div>
 
         <div class="lol-masteries-section">
           <div class="mastery-section-title">
-            <span>✦ CAMPEÕES FAVORITOS & MAESTRIAS ✦</span>
+            <span>✦ CAMPEÕES & MAESTRIAS PRINCIPAIS ✦</span>
           </div>
           <div class="mastery-champs-list">
             
+            <!-- Jinx com Maestria 7 -->
+            <div class="mastery-champ-card">
+              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Jinx.png" alt="Jinx" class="champ-face">
+              <div class="champ-meta">
+                <span class="champ-name">Jinx</span>
+                <span class="champ-role">O Gatilho Solto</span>
+              </div>
+              <div class="champ-rate">
+                <span class="mastery-badge m7">MAESTRIA 7</span>
+                <span class="mastery-pts">285.400 pts</span>
+              </div>
+            </div>
+
+            <!-- Seraphine com Maestria 7 -->
             <div class="mastery-champ-card">
               <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png" alt="Seraphine" class="champ-face">
               <div class="champ-meta">
                 <span class="champ-name">Seraphine</span>
-                <span class="champ-role">Maga / Suporte</span>
+                <span class="champ-role">A Cantora Sonhadora</span>
               </div>
               <div class="champ-rate">
-                <span class="win-pct">59%</span>
-                <span class="win-count">65V 46D</span>
+                <span class="mastery-badge m7">MAESTRIA 7</span>
+                <span class="mastery-pts">194.200 pts</span>
               </div>
             </div>
 
+            <!-- Lux com Maestria 7 -->
             <div class="mastery-champ-card">
               <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lux.png" alt="Lux" class="champ-face">
               <div class="champ-meta">
                 <span class="champ-name">Lux</span>
-                <span class="champ-role">Dama da Luz</span>
+                <span class="champ-role">A Dama da Luz</span>
               </div>
               <div class="champ-rate">
-                <span class="win-pct">53%</span>
-                <span class="win-count">57V 51D</span>
+                <span class="mastery-badge m7">MAESTRIA 7</span>
+                <span class="mastery-pts">162.800 pts</span>
               </div>
             </div>
 
+            <!-- Caitlyn com Maestria 6 -->
             <div class="mastery-champ-card">
               <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png" alt="Caitlyn" class="champ-face">
               <div class="champ-meta">
                 <span class="champ-name">Caitlyn</span>
-                <span class="champ-role">Xerife de Piltover</span>
+                <span class="champ-role">A Xerife de Piltover</span>
               </div>
               <div class="champ-rate">
-                <span class="win-pct">47%</span>
-                <span class="win-count">35V 39D</span>
-              </div>
-            </div>
-
-            <div class="mastery-champ-card">
-              <img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Soraka.png" alt="Soraka" class="champ-face">
-              <div class="champ-meta">
-                <span class="champ-name">Soraka</span>
-                <span class="champ-role">Filha das Estrelas</span>
-              </div>
-              <div class="champ-rate">
-                <span class="win-pct">67%</span>
-                <span class="win-count">Recente</span>
+                <span class="mastery-badge m6">MAESTRIA 6</span>
+                <span class="mastery-pts">118.500 pts</span>
               </div>
             </div>
 
@@ -231,21 +224,45 @@
       </div>
     </section>
 
-    <!-- 3. Tópico: Salão de Jogos Retrô (Arcade Preview) -->
-    <section id="arcade" class="window-card arcade-preview-card">
+    <!-- 3. Tópico: Steam Profile -->
+    <section id="steam" class="window-card steam-window">
       <div class="window-header">
         <div class="window-dots" aria-hidden="true">
           <span class="win-icon star">★</span>
           <span class="win-icon heart">♥</span>
           <span class="win-icon star">★</span>
         </div>
-        <div class="window-title">arcade_room.exe</div>
+        <div class="window-title">steam_profile.api</div>
       </div>
-      <div class="window-body text-center">
-        <div class="arcade-icon-art">🕹️ 👾 🎮</div>
-        <h3 class="arcade-card-title">Salão de Jogos Retrô & Flash</h3>
-        <p class="arcade-card-desc">Uma página inteira e imersiva só de joguinhos clássicos: Snake 99 Neon, Papa's Pizzeria e Tetris com emulador Ruffle!</p>
-        <a href="jogos.html" class="enter-arcade-link">▶ ENTRAR NO SALÃO DE JOGOS ➔</a>
+      <div class="window-body steam-body">
+        <div class="steam-user-header">
+          <div class="steam-avatar-wrap">
+            <img src="https://avatars.fastly.steamstatic.com/b8a6f62b8b7bd48279016ddb5616f9a555b0cf5d_full.jpg" alt="Avatar Steam de Cellinda" class="steam-avatar">
+            <span class="steam-status-dot online" title="Status: Online"></span>
+          </div>
+          <div class="steam-info">
+            <div class="steam-name-row">
+              <h3 class="steam-name">Cellinda</h3>
+              <span class="steam-lvl-badge" title="Status">ONLINE ●</span>
+            </div>
+            <p class="steam-status-text">✦ steamcommunity.com/profiles/76561198312902712</p>
+            <a href="https://steamcommunity.com/profiles/76561198312902712/" target="_blank" rel="noopener noreferrer" class="steam-link-btn">
+              ABRIR NO APLICATIVO STEAM ➔
+            </a>
+          </div>
+        </div>
+
+        <div class="steam-recent-activity">
+          <div class="activity-header">
+            <span class="act-title">ATIVIDADE & JOGOS FAVORITOS</span>
+          </div>
+          <div class="games-badge-list">
+            <div class="game-tag-item">🎮 Stardew Valley</div>
+            <div class="game-tag-item">🦇 Dead by Daylight</div>
+            <div class="game-tag-item">🐱 Stray</div>
+            <div class="game-tag-item">⚔️ League of Legends / Riot</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -362,45 +379,21 @@
       </div>
     </section>
 
-    <!-- 7. Tópico: Steam Profile -->
-    <section id="steam" class="window-card steam-window">
+    <!-- 7. Tópico: Salão de Jogos Retrô (Arcade Preview) -->
+    <section id="arcade" class="window-card arcade-preview-card">
       <div class="window-header">
         <div class="window-dots" aria-hidden="true">
           <span class="win-icon star">★</span>
           <span class="win-icon heart">♥</span>
           <span class="win-icon star">★</span>
         </div>
-        <div class="window-title">steam_profile.api</div>
+        <div class="window-title">arcade_room.exe</div>
       </div>
-      <div class="window-body steam-body">
-        <div class="steam-user-header">
-          <div class="steam-avatar-wrap">
-            <img src="https://avatars.fastly.steamstatic.com/b8a6f62b8b7bd48279016ddb5616f9a555b0cf5d_full.jpg" alt="Avatar Steam de Cellinda" class="steam-avatar">
-            <span class="steam-status-dot online" title="Status: Online"></span>
-          </div>
-          <div class="steam-info">
-            <div class="steam-name-row">
-              <h3 class="steam-name">Cellinda</h3>
-              <span class="steam-lvl-badge" title="Status">ONLINE ●</span>
-            </div>
-            <p class="steam-status-text">✦ steamcommunity.com/profiles/76561198312902712</p>
-            <a href="https://steamcommunity.com/profiles/76561198312902712/" target="_blank" rel="noopener noreferrer" class="steam-link-btn">
-              ABRIR NO APLICATIVO STEAM ➔
-            </a>
-          </div>
-        </div>
-
-        <div class="steam-recent-activity">
-          <div class="activity-header">
-            <span class="act-title">ATIVIDADE & JOGOS FAVORITOS</span>
-          </div>
-          <div class="games-badge-list">
-            <div class="game-tag-item">🎮 Stardew Valley</div>
-            <div class="game-tag-item">🦇 Dead by Daylight</div>
-            <div class="game-tag-item">🐱 Stray</div>
-            <div class="game-tag-item">⚔️ League of Legends / Riot</div>
-          </div>
-        </div>
+      <div class="window-body text-center">
+        <div class="arcade-icon-art">🕹️ 👾 🎮</div>
+        <h3 class="arcade-card-title">Salão de Jogos Retrô & Flash</h3>
+        <p class="arcade-card-desc">Uma página inteira e imersiva só de joguinhos clássicos: Snake 99 Neon, Papa's Pizzeria e Tetris com emulador Ruffle!</p>
+        <a href="jogos.html" class="enter-arcade-link">▶ ENTRAR NO SALÃO DE JOGOS ➔</a>
       </div>
     </section>
 
@@ -408,8 +401,11 @@
 
   <!-- Rodapé Estilizado -->
   <footer class="site-footer">
-    <p>Feito com amor, caos e café por Sally Nuzzi ✦ 2026</p>
+    <p>Feito com amor, caos e café por Marcelle Iannuzzi ✦ 2026</p>
     <p class="sub-footer">Hospedado no GitHub Pages ✦ Rolagem de Feed Contínua</p>
+    <div class="contact-link-row">
+      <a href="contato.html" class="footer-contact-btn">✉ FALE COMIGO ➔</a>
+    </div>
   </footer>
 
   <script src="script.js"></script>
