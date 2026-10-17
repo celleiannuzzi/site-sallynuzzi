@@ -1,37 +1,68 @@
-// ==========================================================================
-// Sally Nuzzi Web Haven - Interatividades & Bugigangas
-// ==========================================================================
+/**
+ * ============================================================================
+ * Sally Nuzzi Web Haven - Motor Interativo (script.js)
+ * ============================================================================
+ * 
+ * O que este arquivo faz:
+ * Este é o cérebro em JavaScript do site. Ele controla todas as interações dinâmicas:
+ * 1. Inicializa o cursor animado da gatinha Pusheen Vampira com rastro suave.
+ * 2. Registra e incrementa as visitas no navegador via LocalStorage.
+ * 3. Gerencia o reprodutor de áudio completo no topo (músicas reais + sintetizador Web Audio).
+ * 4. Carrega dinamicamente a biografia e badges do arquivo 'assets/sobre.json'.
+ * 5. Controla a galeria interativa de gatinhos (Floki, Tom e Cabide).
+ * 6. Executa o jogo clássico Snake (cobrinha) em canvas e troca de cartuchos para Flash (Ruffle).
+ */
 
+// Ponto de entrada: aguarda o HTML ser completamente processado pelo navegador antes de rodar os scripts
 document.addEventListener('DOMContentLoaded', () => {
   initCustomCursor();
   initHeaderVisitorCounter();
   initGlobalHeaderAudio();
   loadDynamicSobreData();
   
+  // Só inicializa o Snake se o canvas de arcade estiver presente na página
   if (document.getElementById('arcadeCanvas')) {
     initRetroSnake();
   }
+  // Só inicializa a galeria dos pets se o container estiver presente na página
   if (document.getElementById('petDetailCard')) {
     initPetGalleryPage();
   }
 });
 
 /* --------------------------------------------------------------------------
-   0. Carregamento Dinâmico do Sobre Mim (assets/sobre.json)
+   0. Carregamento Dinâmico do Sobre Mim
    -------------------------------------------------------------------------- */
+/**
+ * loadDynamicSobreData
+ * 
+ * Finalidade:
+ * Lê o arquivo 'assets/sobre.json' via requisição Fetch e atualiza o texto
+ * do container 'Sobre Mim', as tags/badges e o status de Marcelle sem precisar
+ * alterar o código HTML diretamente.
+ * 
+ * Entradas: Nenhuma (busca o arquivo diretamente pelo caminho relativo).
+ * Saídas: Nenhuma (manipula o DOM diretamente nos elementos id="dynamic*").
+ */
 function loadDynamicSobreData() {
   const bioEl = document.getElementById('dynamicBio');
   const statusEl = document.getElementById('dynamicStatusTag');
   const taglineEl = document.getElementById('dynamicTagline');
   const badgesEl = document.getElementById('dynamicBadges');
+  
+  // Se os elementos não existirem na página atual (ex: tela de contato ou jogos), encerra
   if (!bioEl) return;
 
   fetch('assets/sobre.json')
     .then(res => res.json())
     .then(data => {
+      // Injeta o status atual (ex: "[status: em desenvolvimento]")
       if (data.statusTag && statusEl) statusEl.textContent = data.statusTag;
+      // Injeta a frase de efeito abaixo do nome
       if (data.tagline && taglineEl) taglineEl.textContent = data.tagline;
+      // Injeta a descrição da biografia
       if (data.bio && bioEl) bioEl.textContent = data.bio;
+      // Renderiza as badges e tags dinâmicas como botõezinhos estilizados
       if (data.badges && badgesEl && Array.isArray(data.badges)) {
         badgesEl.innerHTML = '';
         data.badges.forEach(b => {
@@ -43,6 +74,7 @@ function loadDynamicSobreData() {
       }
     })
     .catch(err => {
+      // Caso ocorra algum erro na leitura do JSON, o site mantém os textos padrão do HTML
       console.warn('Usando valores padrão do HTML para o Sobre Mim:', err);
     });
 }
@@ -50,17 +82,30 @@ function loadDynamicSobreData() {
 /* --------------------------------------------------------------------------
    1. Cursor Personalizado com Efeito Magnético e Brilho
    -------------------------------------------------------------------------- */
+/**
+ * initCustomCursor
+ * 
+ * Finalidade:
+ * Configura o rastro de cursor personalizado com a gatinha Pusheen Vampira
+ * e um pontinho de luz neon que segue as coordenadas do ponteiro do mouse na tela.
+ * Em dispositivos touch (celulares), o cursor customizado é desativado para não atrapalhar o toque.
+ * 
+ * Entradas: Nenhuma.
+ * Saídas: Nenhuma.
+ */
 function initCustomCursor() {
   const cursor = document.getElementById('customCursor');
   const dot = document.getElementById('cursorDot');
   if (!cursor || !dot) return;
 
+  // Desativa em celulares e telas touch
   if (window.matchMedia('(pointer: coarse)').matches) {
     cursor.style.display = 'none';
     dot.style.display = 'none';
     return;
   }
 
+  // Atualiza as posições X e Y do cursor com pequeno atraso para dar efeito de suavidade e rastro
   window.addEventListener('mousemove', (e) => {
     dot.style.left = `${e.clientX}px`;
     dot.style.top = `${e.clientY}px`;
@@ -71,13 +116,14 @@ function initCustomCursor() {
     }, 40);
   });
 
+  // Aumenta o brilho do cursor ao passar o mouse sobre botões, links e cartuchos
   const interactiveElements = document.querySelectorAll('a, button, input, .pet-link-card, .post-card, .cartridge');
   interactiveElements.forEach((el) => {
     el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
   });
 
-  // Evitar que o cursor customizado trave ao passar por cima do vídeo (iframe do YouTube)
+  // Evita que o cursor customizado trave ou bloqueie a interação ao passar por cima do player de vídeo (YouTube)
   const videoFrames = document.querySelectorAll('.crt-frame, iframe');
   videoFrames.forEach((frame) => {
     frame.addEventListener('mouseenter', () => {
@@ -94,23 +140,37 @@ function initCustomCursor() {
 /* --------------------------------------------------------------------------
    2. Contador de Visitas no Cabeçalho
    -------------------------------------------------------------------------- */
+/**
+ * initHeaderVisitorCounter
+ * 
+ * Finalidade:
+ * Simula um contador nostálgico dos anos 2000 no cabeçalho do site.
+ * Salva a contagem no armazenamento local (LocalStorage) do navegador
+ * para que cada visita seja somada e formatada com 6 dígitos (ex: 001338).
+ * 
+ * Entradas: Nenhuma.
+ * Saídas: Nenhuma.
+ */
 function initHeaderVisitorCounter() {
   const counterEl = document.getElementById('headerVisitCount');
   if (!counterEl) return;
 
+  // Lê a contagem atual salva no navegador ou começa na clássica 1337
   let visits = parseInt(localStorage.getItem('sally_visitor_count') || '1337', 10);
   visits += 1;
   localStorage.setItem('sally_visitor_count', visits);
+  // Formata o número com zeros à esquerda (ex: 001338)
   counterEl.textContent = String(visits).padStart(6, '0');
 }
 
 /* --------------------------------------------------------------------------
    3. Player de Áudio Global no Cabeçalho
    - Playlist de músicas com Avançar / Voltar
-   - Letreiro Marquee infinito com o nome da faixa
-   - Botão Mute / Unmute inteligente com restauração de volume anterior
-   - Fallback para sintetizador caso não encontre arquivo local
+   - Letreiro Marquee com o nome da faixa
+   - Botão Mute / Unmute com memória de volume
+   - Fallback de sintetizador caso o arquivo mp3 não carregue
    -------------------------------------------------------------------------- */
+// Lista de faixas musicais disponíveis no reprodutor
 const PLAYLIST = [
   {
     title: '✦ Bring Me The Horizon — Throne ✦',
@@ -134,6 +194,17 @@ const PLAYLIST = [
   }
 ];
 
+/**
+ * initGlobalHeaderAudio
+ * 
+ * Finalidade:
+ * Gerencia todos os botões do player de música (Play, Pause, Próxima, Anterior,
+ * Mute e controle deslizante de volume).
+ * Inclui sintetizador Web Audio API de reserva caso o navegador bloqueie os MP3.
+ * 
+ * Entradas: Nenhuma.
+ * Saídas: Nenhuma.
+ */
 function initGlobalHeaderAudio() {
   const toggleBtn = document.getElementById('globalAudioBtn');
   const prevBtn = document.getElementById('prevTrackBtn');
@@ -148,12 +219,13 @@ function initGlobalHeaderAudio() {
   let currentTrackIndex = 0;
   let isPlaying = false;
   let isMuted = false;
-  let previousVolume = 40; // Guarda o volume anterior ao mutar
+  let previousVolume = 40; // Guarda o volume anterior para restaurar ao desmutar
 
   let audioCtx = null;
   let oscillator = null;
   let gainNode = null;
 
+  // Atualiza o texto do letreiro com o título da música atual
   function updateTrackDisplay() {
     const track = PLAYLIST[currentTrackIndex];
     if (marqueeText) {
@@ -161,6 +233,7 @@ function initGlobalHeaderAudio() {
     }
   }
 
+  // Anima as barrinhas do equalizador quando a música estiver tocando
   function updateVisualizer(playing) {
     if (playing) {
       visualizer?.classList.add('playing');
@@ -173,6 +246,7 @@ function initGlobalHeaderAudio() {
     }
   }
 
+  // Gera som ambiente sintético via Web Audio API caso o arquivo de áudio falhe
   function startSynthesizer(frequency) {
     stopSynthesizer();
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -199,6 +273,7 @@ function initGlobalHeaderAudio() {
     oscillator.start();
   }
 
+  // Interrompe o sintetizador de áudio Web Audio
   function stopSynthesizer() {
     if (audioCtx) {
       audioCtx.close();
@@ -208,6 +283,7 @@ function initGlobalHeaderAudio() {
     }
   }
 
+  // Inicia a reprodução da faixa atual selecionada na lista
   function playCurrentTrack() {
     const track = PLAYLIST[currentTrackIndex];
     updateTrackDisplay();
@@ -225,6 +301,7 @@ function initGlobalHeaderAudio() {
             updateVisualizer(true);
           })
           .catch((err) => {
+            // Se o navegador barrar o carregamento do MP3, toca o sintetizador relaxante
             console.warn('Erro ao tocar áudio real, fallback sintetizador:', err);
             startSynthesizer(196);
             isPlaying = true;
@@ -234,7 +311,7 @@ function initGlobalHeaderAudio() {
     }
   }
 
-  // Tocar próxima música automaticamente quando a atual acabar
+  // Avança para a próxima música da lista automaticamente ao terminar a música atual
   if (audioElement) {
     audioElement.addEventListener('ended', () => {
       currentTrackIndex = (currentTrackIndex + 1) % PLAYLIST.length;
@@ -242,6 +319,7 @@ function initGlobalHeaderAudio() {
     });
   }
 
+  // Pausa a música ou sintetizador em execução
   function pauseTrack() {
     if (audioElement && !audioElement.paused) {
       audioElement.pause();
@@ -363,6 +441,17 @@ const PETS_DATA = {
   }
 };
 
+/**
+ * initPetGalleryPage
+ * 
+ * Finalidade:
+ * Inicializa a navegação da galeria de fotos dos gatos na página pets.html.
+ * Lê o parâmetro '?pet=nome' na URL para abrir diretamente o pet escolhido
+ * e adiciona o evento de clique nas abas para alternar sem recarregar a tela.
+ * 
+ * Entradas: Nenhuma (lê a query string window.location.search).
+ * Saídas: Nenhuma.
+ */
 function initPetGalleryPage() {
   const urlParams = new URLSearchParams(window.location.search);
   let currentPet = urlParams.get('pet') || 'floki';
@@ -370,6 +459,7 @@ function initPetGalleryPage() {
 
   renderPetData(currentPet);
 
+  // Alterna o gatinho exibido ao clicar em uma das abas
   const tabs = document.querySelectorAll('.pet-tab-btn');
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -378,20 +468,35 @@ function initPetGalleryPage() {
       const petKey = tab.getAttribute('data-pet');
       renderPetData(petKey);
       
+      // Atualiza a URL no navegador sem recarregar a página
       const newUrl = `${window.location.pathname}?pet=${petKey}`;
       window.history.replaceState({}, '', newUrl);
     });
   });
 }
 
+/**
+ * renderPetData
+ * 
+ * Finalidade:
+ * Atualiza os elementos visuais da tela de pets (título, foto de destaque,
+ * nome, biografia e lista de fotos Polaroid) com os dados do pet selecionado.
+ * 
+ * Argumentos de Entrada:
+ * @param {string} petKey - Chave identificadora do pet ('floki', 'tom' ou 'cabide').
+ * 
+ * Saídas: Nenhuma (manipula o DOM diretamente).
+ */
 function renderPetData(petKey) {
   const data = PETS_DATA[petKey];
   if (!data) return;
 
+  // Marca o botão da aba como ativo
   document.querySelectorAll('.pet-tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-pet') === petKey);
   });
 
+  // Atualiza os dados de texto e imagem principal
   document.getElementById('petWindowTitle').textContent = `gallery: ${petKey}.dat`;
   document.getElementById('petMainPhoto').src = data.mainImg;
   document.getElementById('petName').textContent = data.name;
@@ -400,6 +505,7 @@ function renderPetData(petKey) {
   document.getElementById('petFolderTarget').textContent = data.name.split(' ')[0];
   document.getElementById('folderNameSpan').textContent = data.folder;
 
+  // Monta as fotos estilo Polaroid no álbum
   const albumEl = document.getElementById('photoAlbum');
   albumEl.innerHTML = '';
 
@@ -415,6 +521,7 @@ function renderPetData(petKey) {
     albumEl.appendChild(card);
   });
 
+  // Card com instruções de como adicionar mais fotos na pasta do projeto
   const uploadHint = document.createElement('div');
   uploadHint.className = 'polaroid-card';
   uploadHint.innerHTML = `
@@ -429,6 +536,17 @@ function renderPetData(petKey) {
 /* --------------------------------------------------------------------------
    5. Mini-Arcade: Jogo da Cobrinha (Snake 99 Neon)
    -------------------------------------------------------------------------- */
+/**
+ * initRetroSnake
+ * 
+ * Finalidade:
+ * Executa o jogo clássico da Cobrinha (Snake) renderizado em um elemento HTML5 Canvas.
+ * Controla a movimentação, colisão da cobra com seu próprio corpo, surgimento
+ * de comidas neon, pontuação, recorde no LocalStorage e atalhos de teclado (WASD/Setas).
+ * 
+ * Entradas: Nenhuma.
+ * Saídas: Nenhuma.
+ */
 function initRetroSnake() {
   const canvas = document.getElementById('arcadeCanvas');
   if (!canvas) return;
@@ -450,6 +568,7 @@ function initRetroSnake() {
   let gameInterval = null;
   let isRunning = false;
 
+  // Reinicia o estado inicial da cobra e pontuação
   function resetGame() {
     snake = [
       { x: 10, y: 10 },
@@ -462,6 +581,7 @@ function initRetroSnake() {
     spawnFood();
   }
 
+  // Gera uma comida em coordenadas aleatórias na grade
   function spawnFood() {
     food = {
       x: Math.floor(Math.random() * tileCount),
@@ -469,14 +589,17 @@ function initRetroSnake() {
     };
   }
 
+  // Loop de atualização da física e movimentação do jogo
   function gameLoop() {
     const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
 
+    // Efeito de atravessar a borda da tela e aparecer do outro lado
     if (head.x < 0) head.x = tileCount - 1;
     if (head.x >= tileCount) head.x = 0;
     if (head.y < 0) head.y = tileCount - 1;
     if (head.y >= tileCount) head.y = 0;
 
+    // Detecta colisão da cabeça com o próprio corpo
     for (let i = 0; i < snake.length; i++) {
       if (head.x === snake[i].x && head.y === snake[i].y) {
         gameOver();
@@ -486,6 +609,7 @@ function initRetroSnake() {
 
     snake.unshift(head);
 
+    // Quando come a comida
     if (head.x === food.x && head.y === food.y) {
       score += 10;
       scoreEl.textContent = score;
@@ -502,10 +626,12 @@ function initRetroSnake() {
     draw();
   }
 
+  // Desenha os elementos na tela (grade retrô, comida rosa neon e corpo da cobra)
   function draw() {
     ctx.fillStyle = '#0a0514';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Desenha as linhas da grade sutil
     ctx.strokeStyle = 'rgba(157, 78, 221, 0.08)';
     for (let i = 0; i < canvas.width; i += gridSize) {
       ctx.beginPath();
@@ -514,11 +640,13 @@ function initRetroSnake() {
       ctx.stroke();
     }
 
+    // Desenha a comida com brilho neon
     ctx.fillStyle = '#ff2a85';
     ctx.shadowBlur = 10;
     ctx.shadowColor = '#ff2a85';
     ctx.fillRect(food.x * gridSize + 2, food.y * gridSize + 2, gridSize - 4, gridSize - 4);
 
+    // Desenha cada segmento da cobrinha
     snake.forEach((part, index) => {
       ctx.fillStyle = index === 0 ? '#e0aaff' : '#9d4edd';
       ctx.shadowBlur = index === 0 ? 12 : 5;
@@ -529,6 +657,7 @@ function initRetroSnake() {
     ctx.shadowBlur = 0;
   }
 
+  // Trata o encerramento da partida e exibe letreiro GAME OVER
   function gameOver() {
     clearInterval(gameInterval);
     isRunning = false;
@@ -542,6 +671,7 @@ function initRetroSnake() {
     startBtn.textContent = '▶ JOGAR NOVAMENTE';
   }
 
+  // Inicia ou reinicia o loop do jogo
   function startGame() {
     resetGame();
     if (gameInterval) clearInterval(gameInterval);
@@ -552,6 +682,7 @@ function initRetroSnake() {
 
   startBtn.addEventListener('click', startGame);
 
+  // Escuta as teclas direcionais do teclado (WASD ou setas)
   window.addEventListener('keydown', (e) => {
     if (!isRunning) return;
     switch (e.key) {
@@ -582,17 +713,28 @@ function initRetroSnake() {
     }
   });
 
+  // Botões táteis na tela para quem joga pelo celular
   document.getElementById('btnUp')?.addEventListener('click', () => { if (velocity.y !== 1) velocity = { x: 0, y: -1 }; });
   document.getElementById('btnDown')?.addEventListener('click', () => { if (velocity.y !== -1) velocity = { x: 0, y: 1 }; });
   document.getElementById('btnLeft')?.addEventListener('click', () => { if (velocity.x !== 1) velocity = { x: -1, y: 0 }; });
-  document.getElementById('btnRight')?.addEventListener('click', () => { if (velocity.x !== 1) velocity = { x: 1, y: 0 }; });
+  document.getElementById('btnRight')?.addEventListener('click', () => { if (velocity.x !== -1) velocity = { x: 1, y: 0 }; });
 
   draw();
 
-  // Gerenciador de Troca de Cartuchos (Snake vs Flash Ruffle)
+  // Inicializa a troca de cartuchos entre o Snake e os jogos em Flash
   initCartridgeSwitcher();
 }
 
+/**
+ * initCartridgeSwitcher
+ * 
+ * Finalidade:
+ * Permite ao usuário clicar nos cartuchos físicos de jogos da prateleira retrô
+ * e alternar a tela entre o Snake local e os jogos Flash (.swf).
+ * 
+ * Entradas: Nenhuma.
+ * Saídas: Nenhuma.
+ */
 function initCartridgeSwitcher() {
   const cartridges = document.querySelectorAll('.cartridge');
   const snakeView = document.getElementById('snakeView');
@@ -625,12 +767,24 @@ function initCartridgeSwitcher() {
   });
 }
 
+/**
+ * loadFlashGame
+ * 
+ * Finalidade:
+ * Instancia o emulador WebAssembly Ruffle e carrega o arquivo .swf do jogo em Flash
+ * selecionado dentro da tela do fliperama.
+ * 
+ * Argumentos de Entrada:
+ * @param {string} swfPath - Caminho relativo para o arquivo .swf do jogo (ex: 'assets/games/sue-sushi/sue_sushi.swf').
+ * 
+ * Saídas: Nenhuma.
+ */
 function loadFlashGame(swfPath) {
   const container = document.getElementById('ruffleContainer');
   if (!container) return;
   container.innerHTML = '';
 
-  // Criar elemento Ruffle player
+  // Cria e anexa o player Ruffle ao container
   if (window.RufflePlayer) {
     const ruffle = window.RufflePlayer.newest();
     const player = ruffle.createPlayer();
@@ -639,6 +793,7 @@ function loadFlashGame(swfPath) {
     container.appendChild(player);
     player.load(swfPath);
   } else {
+    // Mensagem de aviso caso o script do Ruffle ainda esteja baixando
     container.innerHTML = `
       <div style="padding: 2rem; color: var(--purple-bright);">
         <p>Carregando emulador Ruffle Flash...</p>

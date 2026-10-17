@@ -1,5 +1,14 @@
 /* ==========================================================================
-   Sally Nuzzi - Identidade Visual Dark, Emo & Gamer (Preto & Roxo Neon)
+   Sally Nuzzi Web Haven - Folha de Estilos Principal (style.css)
+   
+   O que este arquivo faz:
+   - Centraliza todas as variáveis de cores (tema preto, roxo neon, ciano e rosa chiclete)
+   - Define o reset de margens, tipografia global e cursores personalizados
+   - Controla o layout fluido e responsivo do cabeçalho fixo com o player de áudio
+   - Modela as janelas retrô (.window-card) com suas barras de título e ícones (★ ♥ ★)
+   - Estiliza os cards especiais: perfil dinâmico de Sobre Mim, League of Legends,
+     Steam Showcase, Galeria de Fotos dos Pets, TV Vintage CRT e Sala de Jogos
+   - Gerencia responsividade para telas menores (smartphones e tablets)
    ========================================================================== */
 
 :root {

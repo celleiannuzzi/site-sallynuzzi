@@ -1,3 +1,13 @@
+<!-- ==========================================================================
+     Sally Nuzzi Web Haven - Página de Contato (contato.html)
+     
+     O que este arquivo faz:
+     - Apresenta uma tela estilizada com janela retrô ('fale_comigo.msg')
+     - Oferece formulário com campos de nome, e-mail e mensagem
+     - Conecta com o serviço gratuito Web3Forms para encaminhar mensagens direto
+       para o e-mail sallynuzzi@gmail.com sem expor credenciais nem exigir backend
+     - Mantém a identidade visual padrão do site (cursor, fontes, player e cores)
+     ========================================================================== -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -70,7 +80,18 @@
           </p>
         </div>
 
-        <form id="contactForm" class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem pronta para envio! Em breve conectaremos com seu serviço de e-mail.');">
+        <!-- Formulário integrado com Web3Forms (envia direto para sallynuzzi@gmail.com) -->
+        <!-- O Web3Forms recebe a requisição POST e dispara para sua caixa postal de forma segura -->
+        <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Campo oculto com sua chave de acesso pública ou e-mail de redirecionamento do Web3Forms -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          
+          <!-- Se ainda não tiver uma chave gerada, o Web3Forms permite envio configurando o assunto -->
+          <input type="hidden" name="subject" value="Nova mensagem do site Sally Nuzzi!">
+          <input type="hidden" name="from_name" value="Site Sally Nuzzi">
+          <!-- Anti-bot honeypot: bots preenchem campos ocultos e são descartados automaticamente -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
           <div class="form-group">
             <label for="userName">Seu Nome / Como quer ser chamado(a):</label>
             <input type="text" id="userName" name="name" placeholder="Ex: Viajante da Web" required>
